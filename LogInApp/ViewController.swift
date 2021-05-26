@@ -16,8 +16,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var ForgotName: UIButton!
     @IBOutlet weak var ForgotPassword: UIButton!
     
+    @IBOutlet weak var imageUser: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        shadows()
         
         //lifting content from the keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -27,7 +30,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //forward data transfer
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC: WelcomeViewController = segue.destination as! WelcomeViewController
-        print(Username.text!)
         destinationVC.name = Username.text!
     }
 
@@ -69,7 +71,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         Password.resignFirstResponder()
     }
     
-    func alert(name: String, value: String){
+    private func alert(name: String, value: String){
         let alert = UIAlertController(title: "\(name) remider", message: "It's '\(value)'.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
@@ -99,7 +101,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
        return true
       }
-    
+    private func shadows() {
+        let array = [Username, Password, LogInButton,
+                     ForgotName, ForgotPassword, imageUser]
+        for index in array{
+            index?.layer.shadowOffset = CGSize(width: 2, height: 2)
+            index?.layer.shadowOpacity = 0.4
+            index?.layer.shadowRadius = 5
+        }
+    }
 }
 
 
