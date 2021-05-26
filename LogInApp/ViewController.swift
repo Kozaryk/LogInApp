@@ -18,47 +18,52 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //lifting content from the keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        
     }
 
+    //forward data transfer
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC: WelcomeViewController = segue.destination as! WelcomeViewController
         print(Username.text!)
         destinationVC.name = Username.text!
     }
 
+    //transfer to second ViewController and check
     @IBAction func LogIn(_ sender: Any) {
        
         if Username.text == "User" {
             if Password.text == "Password"{
+                //new View open
             }else{
                 let alert = UIAlertController(title: "Error!", message: "Enter your Password.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true)
             }
-        }else{
-            let alert = UIAlertController(title: "Error!", message: "Enter your Username.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true)
+            }else{
+                let alert = UIAlertController(title: "Error!", message: "Enter your Username.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
         }
-        }
-    
+    //question Buttons
     @IBAction func remindUsername(_ sender: Any) {
         alert(name: "Username", value: "User")
     }
     @IBAction func remindPassword(_ sender: Any) {
         alert(name: "Password", value: "Password")
     }
+
+    //backward data transfer (clear the TextFields)
     @IBAction func Clear(_ unwindSegue: UIStoryboardSegue) {
         guard let source = unwindSegue.source as? WelcomeViewController else { return }
         Username.text = source.text
         Password .text = source.text
     }
     
+    //action to close the keyboard
     @IBAction func displeyTapped(_ sender: Any) {
         Username.resignFirstResponder()
         Password.resignFirstResponder()
@@ -66,11 +71,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func alert(name: String, value: String){
         let alert = UIAlertController(title: "\(name) remider", message: "It's '\(value)'.", preferredStyle: .alert)
-
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
- //lifting content from the keyboard
+ 
+    //lifting content from the keyboard
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -83,7 +88,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.view.frame.origin.y = 0
         }
     }
-    
+    //"NEXT" and "DONE" button operation logic
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == Username {
            textField.resignFirstResponder()
@@ -91,11 +96,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else if textField == Password {
            textField.resignFirstResponder()
             LogInButton.sendActions(for: .touchUpInside)
-            
         }
        return true
       }
-    
     
 }
 
