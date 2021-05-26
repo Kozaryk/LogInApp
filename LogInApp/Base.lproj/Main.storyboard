@@ -13,7 +13,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LogInApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="LoginViewController" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -26,7 +26,7 @@
                                             <constraint firstAttribute="height" constant="34" id="CCq-k2-Msu"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cFu-wQ-0Cl">
                                         <rect key="frame" x="0.0" y="42" width="207" height="34"/>
@@ -34,13 +34,17 @@
                                             <constraint firstAttribute="height" constant="34" id="mLo-Il-2OF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNk-n8-4Ze">
                                 <rect key="frame" x="165.66666666666666" y="501" width="82.666666666666657" height="30"/>
                                 <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="LogIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PRk-1n-7LD"/>
+                                    <segue destination="VVV-Zm-z0T" kind="presentation" modalPresentationStyle="fullScreen" id="Pz6-Uv-ddg"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="fvZ-RI-uBb">
                                 <rect key="frame" x="63.666666666666657" y="654" width="287" height="30"/>
@@ -48,10 +52,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UMY-Ge-bYw">
                                         <rect key="frame" x="0.0" y="0.0" width="131" height="30"/>
                                         <state key="normal" title="Forgot User name?"/>
+                                        <connections>
+                                            <action selector="remindUsername:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BVY-kL-h0T"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GI7-tn-bLN">
                                         <rect key="frame" x="156" y="0.0" width="131" height="30"/>
                                         <state key="normal" title="Forgot Password?"/>
+                                        <connections>
+                                            <action selector="remindPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JYO-yI-RwY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -69,15 +79,23 @@
                             <constraint firstItem="fvZ-RI-uBb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rmb-8C-J5d"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="f0a-JS-Lr4"/>
+                    <connections>
+                        <outlet property="ForgotName" destination="UMY-Ge-bYw" id="IDy-Xf-64g"/>
+                        <outlet property="ForgotPassword" destination="GI7-tn-bLN" id="y5Z-z8-kNw"/>
+                        <outlet property="LogInButton" destination="RNk-n8-4Ze" id="qbl-UF-izi"/>
+                        <outlet property="Password" destination="cFu-wQ-0Cl" id="esD-K4-Tff"/>
+                        <outlet property="Username" destination="3zV-jt-esB" id="DRn-RV-kwF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.399999999999999" y="93.103448275862078"/>
         </scene>
-        <!--View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="TF6-fk-wcz">
             <objects>
-                <viewController id="VVV-Zm-z0T" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" id="VVV-Zm-z0T" customClass="WelcomeViewController" customModule="LogInApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xab-j3-66l">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,6 +109,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01q-cD-Vkx">
                                 <rect key="frame" x="179.66666666666666" y="598.33333333333337" width="55" height="30"/>
                                 <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="Clear" destination="zMg-Uw-x2s" eventType="touchUpInside" id="tHs-aX-noa"/>
+                                    <action selector="Clear:" destination="zMg-Uw-x2s" eventType="touchUpInside" id="ffQ-9o-W94"/>
+                                    <action selector="LogOutResetValues:" destination="zMg-Uw-x2s" eventType="touchUpInside" id="GlU-WM-U5S"/>
+                                    <action selector="clearFields:" destination="zMg-Uw-x2s" eventType="touchUpInside" id="WNm-92-FJ4"/>
+                                    <action selector="logOutPressed:" destination="VVV-Zm-z0T" eventType="touchUpInside" id="el7-Lw-It1"/>
+                                    <segue destination="zMg-Uw-x2s" kind="unwind" unwindAction="Clear:" id="l0K-xW-pOr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="daP-um-8qZ"/>
@@ -103,10 +129,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wyc-2A-c1d"/>
+                    <connections>
+                        <outlet property="usernameTextMessage" destination="2xg-6h-3UA" id="c00-pQ-Bi2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fz-iS-EVp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="zMg-Uw-x2s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="769.56521739130437" y="100.2717391304348"/>
+            <point key="canvasLocation" x="755" y="93"/>
         </scene>
     </scenes>
 </document>
