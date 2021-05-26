@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LogInApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="LoginViewController" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="e4l-0b-Wuo">
-                                <rect key="frame" x="103.66666666666669" y="395" width="207" height="76"/>
+                                <rect key="frame" x="103.66666666666669" y="383.33333333333331" width="207" height="76"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3zV-jt-esB">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="34"/>
@@ -26,7 +26,10 @@
                                             <constraint firstAttribute="height" constant="34" id="CCq-k2-Msu"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="username"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" textContentType="username"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="FHZ-fW-HvG"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cFu-wQ-0Cl">
                                         <rect key="frame" x="0.0" y="42" width="207" height="34"/>
@@ -34,12 +37,15 @@
                                             <constraint firstAttribute="height" constant="34" id="mLo-Il-2OF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="pUk-m8-dwP"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNk-n8-4Ze">
-                                <rect key="frame" x="165.66666666666666" y="501" width="82.666666666666657" height="30"/>
+                                <rect key="frame" x="165.66666666666666" y="489.33333333333331" width="82.666666666666657" height="29.999999999999943"/>
                                 <state key="normal" title="Log In"/>
                                 <connections>
                                     <action selector="LogIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PRk-1n-7LD"/>
@@ -47,7 +53,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="fvZ-RI-uBb">
-                                <rect key="frame" x="63.666666666666657" y="654" width="287" height="30"/>
+                                <rect key="frame" x="63.666666666666657" y="636" width="287" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UMY-Ge-bYw">
                                         <rect key="frame" x="0.0" y="0.0" width="131" height="30"/>
@@ -68,6 +74,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.90980392160000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="e4l-0b-Wuo" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1:0.85" id="6Ny-4F-EGU"/>
                             <constraint firstItem="e4l-0b-Wuo" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="AKW-if-3bX"/>
@@ -78,6 +85,9 @@
                             <constraint firstItem="RNk-n8-4Ze" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hOv-Wp-W6A"/>
                             <constraint firstItem="fvZ-RI-uBb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rmb-8C-J5d"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="7aU-tk-GeE" appends="YES" id="scQ-0o-yPt"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="f0a-JS-Lr4"/>
                     <connections>
@@ -89,6 +99,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="7aU-tk-GeE">
+                    <connections>
+                        <action selector="displeyTapped:" destination="BYZ-38-t0r" id="3yj-Hq-Ztf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="18.399999999999999" y="93.103448275862078"/>
         </scene>
@@ -131,6 +146,7 @@
                     <navigationItem key="navigationItem" id="Wyc-2A-c1d"/>
                     <connections>
                         <outlet property="usernameTextMessage" destination="2xg-6h-3UA" id="c00-pQ-Bi2"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="enter" id="0Ms-Kl-rk2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fz-iS-EVp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
